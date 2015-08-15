@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Settings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+   <Section Name="GameManagerActorServiceReplicatorConfig">
+      <Parameter Name="ReplicatorEndpoint" Value="GameManagerActorServiceReplicatorEndpoint" />
+   </Section>
+   <Section Name="GameManagerActorServiceReplicatorSecurityConfig">
+      <Parameter Name="CredentialType" Value="None" />
+   </Section>
+   <Section Name="GameManagerActorServiceLocalStoreConfig">
+      <Parameter Name="MaxAsyncCommitDelayInMilliseconds" Value="100" />
+      <Parameter Name="MaxVerPages" Value="32768" />
+   </Section>
+   <Section Name="GameActorServiceReplicatorConfig">
+      <Parameter Name="ReplicatorEndpoint" Value="GameActorServiceReplicatorEndpoint" />
+   </Section>
+   <Section Name="GameActorServiceReplicatorSecurityConfig">
+      <Parameter Name="CredentialType" Value="None" />
+   </Section>
+   <Section Name="GameActorServiceLocalStoreConfig">
+      <Parameter Name="MaxAsyncCommitDelayInMilliseconds" Value="100" />
+      <Parameter Name="MaxVerPages" Value="32768" />
+   </Section>
+   <Section Name="TicTacTechActorServiceActorServiceReplicatorConfig">
+      <Parameter Name="ReplicatorEndpoint" Value="TicTacTechActorServiceActorServiceReplicatorEndpoint" />
+   </Section>
+   <Section Name="TicTacTechActorServiceActorServiceReplicatorSecurityConfig">
+      <Parameter Name="CredentialType" Value="None" />
+   </Section>
+   <Section Name="TicTacTechActorServiceActorServiceLocalStoreConfig">
+      <Parameter Name="MaxAsyncCommitDelayInMilliseconds" Value="100" />
+      <Parameter Name="MaxVerPages" Value="32768" />
+   </Section>
+</Settings>
