@@ -1,6 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ServiceManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="TicTacTech.ActorServicePkg" Version="1.0.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
    <ServiceTypes>
+      <StatefulServiceType ServiceTypeName="GameActorServiceType" HasPersistedState="true">
+         <Extensions>
+            <Extension Name="__GeneratedServiceType__">
+               <GeneratedNames xmlns="http://schemas.microsoft.com/2015/03/fabact-no-schema">
+                  <DefaultService Name="GameActorService" />
+                  <ServiceEndpoint Name="GameActorServiceEndpoint" />
+                  <ReplicatorEndpoint Name="GameActorServiceReplicatorEndpoint" />
+                  <ReplicatorConfigSection Name="GameActorServiceReplicatorConfig" />
+                  <ReplicatorSecurityConfigSection Name="GameActorServiceReplicatorSecurityConfig" />
+                  <StoreConfigSection Name="GameActorServiceLocalStoreConfig" />
+               </GeneratedNames>
+            </Extension>
+         </Extensions>
+      </StatefulServiceType>
       <StatefulServiceType ServiceTypeName="GameManagerActorServiceType" HasPersistedState="true">
          <Extensions>
             <Extension Name="__GeneratedServiceType__">
@@ -15,7 +29,7 @@
             </Extension>
          </Extensions>
       </StatefulServiceType>
-      <StatelessServiceType ServiceTypeName="PlayerActorServiceType">
+      <StatefulServiceType ServiceTypeName="PlayerActorServiceType" HasPersistedState="true">
          <Extensions>
             <Extension Name="__GeneratedServiceType__">
                <GeneratedNames xmlns="http://schemas.microsoft.com/2015/03/fabact-no-schema">
@@ -25,20 +39,6 @@
                   <ReplicatorConfigSection Name="PlayerActorServiceReplicatorConfig" />
                   <ReplicatorSecurityConfigSection Name="PlayerActorServiceReplicatorSecurityConfig" />
                   <StoreConfigSection Name="PlayerActorServiceLocalStoreConfig" />
-               </GeneratedNames>
-            </Extension>
-         </Extensions>
-      </StatelessServiceType>
-      <StatefulServiceType ServiceTypeName="GameActorServiceType" HasPersistedState="true">
-         <Extensions>
-            <Extension Name="__GeneratedServiceType__">
-               <GeneratedNames xmlns="http://schemas.microsoft.com/2015/03/fabact-no-schema">
-                  <DefaultService Name="GameActorService" />
-                  <ServiceEndpoint Name="GameActorServiceEndpoint" />
-                  <ReplicatorEndpoint Name="GameActorServiceReplicatorEndpoint" />
-                  <ReplicatorConfigSection Name="GameActorServiceReplicatorConfig" />
-                  <ReplicatorSecurityConfigSection Name="GameActorServiceReplicatorSecurityConfig" />
-                  <StoreConfigSection Name="GameActorServiceLocalStoreConfig" />
                </GeneratedNames>
             </Extension>
          </Extensions>
@@ -68,11 +68,12 @@
    <ConfigPackage Name="Config" Version="1.0.0.0" />
    <Resources>
       <Endpoints>
+         <Endpoint Name="GameActorServiceEndpoint" />
+         <Endpoint Name="GameActorServiceReplicatorEndpoint" />
          <Endpoint Name="GameManagerActorServiceEndpoint" />
          <Endpoint Name="GameManagerActorServiceReplicatorEndpoint" />
          <Endpoint Name="PlayerActorServiceEndpoint" />
-         <Endpoint Name="GameActorServiceEndpoint" />
-         <Endpoint Name="GameActorServiceReplicatorEndpoint" />
+         <Endpoint Name="PlayerActorServiceReplicatorEndpoint" />
          <Endpoint Name="TicTacTechActorServiceActorServiceEndpoint" />
          <Endpoint Name="TicTacTechActorServiceActorServiceReplicatorEndpoint" />
       </Endpoints>

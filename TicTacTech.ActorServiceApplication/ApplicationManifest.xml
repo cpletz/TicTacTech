@@ -4,18 +4,18 @@
     <ServiceManifestRef ServiceManifestName="TicTacTech.ActorServicePkg" ServiceManifestVersion="1.0.0.0" />
   </ServiceManifestImport>
   <DefaultServices>
+    <Service Name="GameActorService">
+      <StatefulService ServiceTypeName="GameActorServiceType" TargetReplicaSetSize="3" MinReplicaSetSize="2">
+        <UniformInt64Partition PartitionCount="9" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      </StatefulService>
+    </Service>
     <Service Name="GameManagerActorService">
       <StatefulService ServiceTypeName="GameManagerActorServiceType" TargetReplicaSetSize="3" MinReplicaSetSize="2">
         <UniformInt64Partition PartitionCount="9" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
       </StatefulService>
     </Service>
     <Service Name="PlayerActorService">
-      <StatelessService ServiceTypeName="PlayerActorServiceType">
-        <UniformInt64Partition PartitionCount="9" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
-      </StatelessService>
-    </Service>
-    <Service Name="GameActorService">
-      <StatefulService ServiceTypeName="GameActorServiceType" TargetReplicaSetSize="3" MinReplicaSetSize="2">
+      <StatefulService ServiceTypeName="PlayerActorServiceType" TargetReplicaSetSize="3" MinReplicaSetSize="2">
         <UniformInt64Partition PartitionCount="9" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
       </StatefulService>
     </Service>

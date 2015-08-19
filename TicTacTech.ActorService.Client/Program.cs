@@ -16,15 +16,26 @@ namespace TicTacTech.ActorService.Client
         {
             public string Name { get; set; }
 
-            public void GameStarted(string partnerPlayerId)
+
+            public void GameStarted(string otherPlayer, string yourRole)
             {
-                WriteLine($"{Name} is playing with {partnerPlayerId}");
+                throw new NotImplementedException();
             }
 
-            public void GameStateChanged(GameState gameState, bool yourTurn)
+            public void GameStateChanged(string cells, PlayerGameStatus status)
             {
-                WriteLine($"Game startet for player {Name}");
+                throw new NotImplementedException();
             }
+
+            //public void GameStarted(string partnerPlayerId)
+            //{
+            //    WriteLine($"{Name} is playing with {partnerPlayerId}");
+            //}
+
+            //public void GameStateChanged(PlayerGameState gameState, bool yourTurn)
+            //{
+            //    WriteLine($"Game startet for player {Name}");
+            //}
         }
 
         public static void Main(string[] args)

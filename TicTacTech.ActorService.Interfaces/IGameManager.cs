@@ -7,15 +7,26 @@ using System.Threading.Tasks;
 
 namespace TicTacTech.ActorService.Interfaces
 {
-    public class GameState
+
+    public enum PlayerGameStatus
     {
-        public string State { get; set; }
+        WaitAndSee,
+        MoveRequired,
+        YouWon,
+        YouLost,
+        Tie
+    }
+
+    public class PlayerGameState
+    {
+        public string Cells { get; set; }
+        public PlayerGameStatus Status { get; set; }
     }
 
     public interface IPlayerEvents : IActorEvents
     {
-        void GameStarted(string partnerPlayerId);
-        void GameStateChanged(GameState gameState, bool yourTurn);
+        void GameStarted(string otherPlayer, string yourRole);
+        void GameStateChanged(string cells, PlayerGameStatus status);
     }
 
     public interface IPlayer : IActor, IActorEventPublisher<IPlayerEvents>
@@ -27,14 +38,14 @@ namespace TicTacTech.ActorService.Interfaces
         Task SelectCell(int cellId);
 
         // called from Game
-        Task EnterGame(IGame game, IPlayer partner);
-        Task GameStateChanged(GameState gameState, bool yourTurn);
+        Task EnterGame(IGame game, IPlayer partner, string role);
+        Task GameStateChanged(string cells, PlayerGameStatus status);
     }
 
     public interface IGame : IActor
     {
         Task StartGame(IPlayer playerX, IPlayer playerO);
-        Task MakeMove(int cellId, IPlayer player);
+        Task MakeMove(int cellIdx, IPlayer player);
     }
 
     public interface IGameManager : IActor      

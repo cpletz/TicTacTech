@@ -6,15 +6,18 @@ open TicTacToeDomain
 open TicTacToe
 
 [<DataContract>]
-type SerGameState = 
-    { [<DataMember>]
-      board : String
-      [<DataMember>]
-      moveRequiredBy : String
-      [<DataMember>]
-      wonBy : String }
+type SerGameState() = 
+    
+    [<DataMember>]
+    member val board : string = null with get, set
+    
+    [<DataMember>]
+    member val moveRequiredBy : string = null with get, set
+    
+    [<DataMember>]
+    member val wonBy : string = null with get, set
 
-let deserialize serGameState = 
+let deserialize (serGameState : SerGameState) = 
     let deserializeCellState s = 
         match s with
         | 'E' -> Empty
@@ -66,6 +69,9 @@ let serialize gameState =
         | Tie -> (null, null)
     
     let (move, won) = serGameStatus gameState.status
-    { board = serBoard gameState.board
-      moveRequiredBy = move
-      wonBy = won }
+    let sgs = SerGameState()
+    sgs.board <- serBoard gameState.board
+    sgs.moveRequiredBy <- move
+    sgs.wonBy <- won
+    sgs
+

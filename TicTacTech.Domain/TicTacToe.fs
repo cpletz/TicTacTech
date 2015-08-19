@@ -1,4 +1,8 @@
-﻿module TicTacToe
+﻿(*
+Inspired by blog post: http://fsharpforfunandprofit.com/posts/enterprise-tic-tac-toe-2/
+*)
+
+module TicTacToe
 
 open TicTacToeDomain
 
@@ -112,3 +116,7 @@ let makeMove gameState position =
     { board = newBoard
       status = newStatus }
 
+let positionByIndex idx =
+    match idx with
+    | _ when idx < 0 || idx > 8 -> failwith "Invalid cell index"
+    | i -> allPositions.[i]
