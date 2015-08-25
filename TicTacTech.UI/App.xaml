@@ -17,18 +17,21 @@
             </Setter>
         </Style>
 
-
         <Style x:Key="{x:Type TextBox}" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
             <Setter Property="Width" Value="80" />
             <Setter Property="Margin" Value="2" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
+
         <Style x:Key="{x:Type Label}" TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
             <Setter Property="Margin" Value="2" />
+            <Setter Property="FontWeight" Value="Medium" />
         </Style>
+        
         <Style x:Key="{x:Type TextBlock}" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
             <Setter Property="Margin" Value="2" />
             <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
         </Style>
     </Application.Resources>
 </Application>

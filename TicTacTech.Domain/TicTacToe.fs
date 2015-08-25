@@ -73,14 +73,17 @@ let private checkGameWon board =
         |> Seq.map (fun c -> (c.position, c))
         |> Map.ofSeq
     
-    let checkLine (line : CellPosition array) = 
+    let checkLineWon (line : CellPosition array) = 
         let firstPos = line.[0]
         let firstCell = map.[firstPos]
         match firstCell.state with
         | Empty -> false
         | _ -> line |> Array.forall (fun p -> map.[p].state = firstCell.state)
     
-    linesToCheck |> Seq.exists checkLine
+    let checkLineTie (line : CellPosition array) = line
+                                                   |> Array.exists (fun p -> map.[p].state = PlayedByX)
+                                                   && line |> Array.exists (fun p -> map.[p].state = PlayedByO)
+    linesToCheck |> Seq.exists checkLineWon, linesToCheck |> Seq.forall checkLineTie
 
 let startGame() = 
     let board = 
@@ -98,16 +101,18 @@ let makeMove gameState position =
         | _ -> failwith "Invalid game state. No move required."
     
     let newBoard = applyMove gameState.board position player
-    let whatWeHave = (checkGameWon newBoard, newBoard |> Seq.exists (fun c -> c.state = Empty))
+    let won, tie = checkGameWon newBoard
+//    let emtyCellsLeft = newBoard |> Seq.exists (fun c -> c.state = Empty)
+//    let whatWeHave = (won, tie, emtyCellsLeft)
     
     let newStatus = 
-        match whatWeHave with
-        | (true, _) -> 
+        match won, tie with
+        | true, _ -> 
             match gameState.status with
             | MoveRequiredByX -> WonByX
             | MoveRequiredByO -> WonByO
             | _ -> failwith "Invalid game state for move."
-        | (_, false) -> Tie
+        | _, true -> Tie
         | _ -> 
             match gameState.status with
             | MoveRequiredByX -> MoveRequiredByO
@@ -116,7 +121,7 @@ let makeMove gameState position =
     { board = newBoard
       status = newStatus }
 
-let positionByIndex idx =
+let positionByIndex idx = 
     match idx with
     | _ when idx < 0 || idx > 8 -> failwith "Invalid cell index"
     | i -> allPositions.[i]

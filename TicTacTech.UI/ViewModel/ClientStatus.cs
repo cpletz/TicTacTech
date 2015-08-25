@@ -9,6 +9,8 @@ namespace TicTacTech.UI.ViewModel
     public enum ClientStatus
     {
         NoGame,
+        NewGame,
+        WaitingForOther,
         MyTurn,
         OthersTurn,
         Won,

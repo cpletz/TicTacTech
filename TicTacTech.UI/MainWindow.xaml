@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:TicTacTech.UI"
         mc:Ignorable="d"
         Title="TicTacTech" Height="350" Width="525">
-    <!--<Viewbox VerticalAlignment="Stretch">-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -29,14 +29,15 @@
             <TextBox Grid.Column="1" Text="{Binding PlayerName, Delay=100, UpdateSourceTrigger=PropertyChanged}"/>
             <Button Grid.Column="2" Content="Play" Command="Play" Margin="2" />
             <Label Grid.Column="3" Content="Role" />
-            <TextBlock Grid.Column="4" Text="{Binding Role}" />
+            <TextBlock Grid.Column="4" Text="{Binding Role}"/>
             <Label Grid.Column="5" Content="Playing with" />
             <TextBlock Grid.Column="6" Text="{Binding OtherPlayer}" />
             <Label Grid.Column="7" Content="Status" />
             <TextBlock Grid.Column="8" Text="{Binding Status}" />
         </Grid>
 
-            <Grid Grid.Row="1">
+        <Border Grid.Row="1"  BorderBrush="{Binding BorderColor}" BorderThickness="1">
+            <Grid >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
@@ -57,6 +58,25 @@
                 <Button Grid.Row="2" Grid.Column="1" DataContext="{Binding Cells[7]}" Content="{Binding PlayedBy}" Style="{StaticResource CellButton}" Command="Open" CommandParameter="7" />
                 <Button Grid.Row="2" Grid.Column="2" DataContext="{Binding Cells[8]}" Content="{Binding PlayedBy}" Style="{StaticResource CellButton}" Command="Open" CommandParameter="8" />
             </Grid>
+        </Border>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Content="Statistics:" />
+            <Label Grid.Column="1" Content="Won" />
+            <TextBlock Grid.Column="2" Text="{Binding PlayerStats.Won}" />
+            <Label Grid.Column="3" Content="Lost" />
+            <TextBlock Grid.Column="4" Text="{Binding PlayerStats.Lost}" />
+            <Label Grid.Column="5" Content="Ties" />
+            <TextBlock Grid.Column="6" Text="{Binding PlayerStats.Ties}" />
         </Grid>
-    <!--</Viewbox>-->
+    </Grid>
 </Window>

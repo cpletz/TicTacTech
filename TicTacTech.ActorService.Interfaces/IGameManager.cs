@@ -29,6 +29,13 @@ namespace TicTacTech.ActorService.Interfaces
         void GameStateChanged(string cells, PlayerGameStatus status);
     }
 
+    public class PlayerStats
+    {
+        public int Won { get; set; }
+        public int Lost { get; set; }
+        public int Ties { get; set; }
+    }
+
     public interface IPlayer : IActor, IActorEventPublisher<IPlayerEvents>
     {
         Task<string> GetName();
@@ -36,6 +43,7 @@ namespace TicTacTech.ActorService.Interfaces
         // called from UI
         Task GoAndPlay();
         Task SelectCell(int cellId);
+        Task<PlayerStats> GetStats();
 
         // called from Game
         Task EnterGame(IGame game, IPlayer partner, string role);
