@@ -16,13 +16,10 @@ namespace TicTacTech.ActorService
         public string Initiator;
     }
 
-    public class GameManager : Actor<GameManagerData>, IGameManager
+    [VolatileActorStateProvider]
+    public class GameManager :
+        Actor<GameManagerData>, IGameManager
     {
-        public static IGameManager Instance()
-        {
-            return ActorProxy.Create<IGameManager>(new ActorId("TicTacTechMgr"));
-        }
-
         public async Task LetMePlay(IPlayer player)
         {
             var playerId = Player.GetId(player);
@@ -42,6 +39,11 @@ namespace TicTacTech.ActorService
                         Player.FromId(playerId));
             }
         }
+        public static IGameManager Instance()
+        {
+            return ActorProxy.Create<IGameManager>(new ActorId("TicTacTechMgr"));
+        }
+
     }
 
 

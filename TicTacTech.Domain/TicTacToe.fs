@@ -30,7 +30,7 @@ let private applyMove board pos player =
         | c when c.position = pos -> 
             match c.state with
             | Empty -> { oldCell with state = newCellState }
-            | _ -> failwith "Cell is not empty"
+            | _ -> failwith "Cell is not empty."
         | _ -> oldCell
     
     board |> Seq.map mapCell
@@ -102,8 +102,6 @@ let makeMove gameState position =
     
     let newBoard = applyMove gameState.board position player
     let won, tie = checkGameWon newBoard
-//    let emtyCellsLeft = newBoard |> Seq.exists (fun c -> c.state = Empty)
-//    let whatWeHave = (won, tie, emtyCellsLeft)
     
     let newStatus = 
         match won, tie with
@@ -123,5 +121,5 @@ let makeMove gameState position =
 
 let positionByIndex idx = 
     match idx with
-    | _ when idx < 0 || idx > 8 -> failwith "Invalid cell index"
+    | _ when idx < 0 || idx > 8 -> failwith "Invalid cell index."
     | i -> allPositions.[i]
